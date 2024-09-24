@@ -1,3 +1,14 @@
+// функция вывода
+function result() {
+    let outTest = user()
+    let outTestAge = year()
+    let genderr = gender(outTestAge)
+
+    return outA(`${outTest};\n${genderr}`)
+}
+result()
+
+
 // функция ФИО пользователя
 function user() {
     let userName //здесь будте храниться значение prompt
@@ -9,20 +20,17 @@ function user() {
     while (true) {
         userName = prompt(fio[index])
         checkNum = false
-        
-        if (userName == null) {
-            out = ''
-            index = 0
-            return false
-        } else {
-            userName.split('').forEach(el => {
+
+        if (!checkNum && userName) {
+             userName.split('').forEach(el => {
                 if(isFinite(el)) {
                     checkNum = true
                 }
             })
         }
+           
 
-        if (userName.trim() == '' || checkNum) {
+        if (userName == null || userName.trim() == '' || checkNum) {
             outA(`вы ввели не верные данные: ${fio[index].slice(5)}`)
         } else {
             out += userName + ' '
@@ -39,14 +47,10 @@ function user() {
 // функция лет
 function year() {
     let age
-    // let check = true
+
     while (true) {
         age = prompt('Ваш возраст в годах')
-        if (age === null) {
-            return false 
-        }
-
-        if (!+age || isNaN(+age) || +age < 0 ) {
+        if (age === null || !+age || isNaN(+age) || +age < 1) {
             outA('вы ввели не верные даные: Возраст')
         } else {
             return +age
@@ -70,22 +74,6 @@ function gender(age) {
 // console.log(gender())
 
 
-function result() {
-    let outTest = test(user)
-    let outTestAge
-    let genderr
-    
-    if (outTest) {
-        outTestAge = test(year)    
-    }
-
-    if (outTestAge) {
-        genderr = gender(outTestAge)
-        return outA(`${outTest};\n${genderr}`)
-    }
-}
-result()
-
 
 
 ////////////////вспомогательные функции////////////////////
@@ -93,18 +81,6 @@ result()
 //функция для вывода данных
 function outA (value) {
     alert(value)
-}
-
-//функция проверяет имя и годы пользователя
-function test(par) {
-    let user = par()
-
-    if (!user) {
-        outA('God Bye')
-    } else {
-        return user
-    } 
-    return false
 }
 
 //функция проверка пенсии
