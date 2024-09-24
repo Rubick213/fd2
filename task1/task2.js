@@ -22,11 +22,22 @@ function user() {
         checkNum = false
 
         if (!checkNum && userName) {
-             userName.split('').forEach(el => {
-                if(isFinite(el)) {
+            let arr = userName.split('')
+            for (let i = 0; i < arr.length; i++) {
+                if (isFinite(arr[i])) {
                     checkNum = true
-                }
-            })
+                    break
+                }                
+            }
+
+
+            //я иммел ввиду использовать метод find
+            //в место forEach, логика у меня была такая - метод находит цыфру и возврощает ее 
+            // потом идет проверка, если  переменная checkNum положительная значит в строке есть цифра то это нам не подходит 
+            // если все таки в строке нету цифры то возврощает undefined и дальшьу  проверка 
+            // если она отрицательнач то значит все хорошо проходим дальше
+            
+            // checkNum = arr.find(el => isFinite(el))
         }
            
 
@@ -49,11 +60,11 @@ function year() {
     let age
 
     while (true) {
-        age = prompt('Ваш возраст в годах')
-        if (age === null || !+age || isNaN(+age) || +age < 1) {
+        age = +prompt('Ваш возраст в годах')
+        if (age === null || !age || isNaN(age) || age < 1) {
             outA('вы ввели не верные даные: Возраст')
         } else {
-            return +age
+            return age
         }
     }
 
@@ -69,7 +80,7 @@ function gender(age) {
     let gen = confirm('Ваш пол Мужской?')
     let out = gen ? outGender(age,man,pensMan) : outGender(age,women,pensWomen) 
     
-    return `Ваш возраст в годах: ${age};\nВаш возраст в днях: ${age*365};\nЧерез 5 лет вам будет: ${+age + 5};\n${out};`
+    return `Ваш возраст в годах: ${age};\nВаш возраст в днях: ${age*365};\nЧерез 5 лет вам будет: ${age + 5};\n${out};`
 }
 // console.log(gender())
 
