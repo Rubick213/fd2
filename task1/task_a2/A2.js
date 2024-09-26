@@ -1,17 +1,24 @@
 let stroke = prompt('введите строку')
+// let z = stroke.replace(' ','')
+// console.log(+stroke);
+
 
 function spaceDelete(el) {
     if (el === null) {
         return el
-    } 
+    }
     if (+el === 0 && isNaN(parseInt(el))) {
-        console.log('строка пустая или состоит из пробелов');
+        console.log('строка пустая или состоит из проебелов');
         return ''
     }
-
     let outStr = el
     let left = 0
     let right = outStr.length-1
+
+    if (outStr[left] !== ' ' && outStr[right] !== ' ') {
+        console.log('пробелов в конце и в начале строки нет');
+        return outStr
+    }
 
    while (true) {
     
