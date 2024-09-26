@@ -7,34 +7,39 @@ function spaceDelete(el) {
     if (el === null) {
         return el
     }
-    if (+el === 0 && isNaN(parseInt(el))) {
-        console.log('строка пустая или состоит из проебелов');
+
+    let left = 0
+    let right = el.length-1
+
+    for (let i = 0; i < el.length; i++) {
+        if (el[i] === ' ') {
+            left++
+        } else {
+            break
+        }
+    }
+
+    if (el.length === left) {
+        console.log('строка пустая или из пробелов');
         return ''
     }
-    let outStr = el
-    let left = 0
-    let right = outStr.length-1
 
-    if (outStr[left] !== ' ' && outStr[right] !== ' ') {
-        console.log('пробелов в конце и в начале строки нет');
-        return outStr
+    for (let i = el.length-1; i > 0; i--) {
+        if (el[i] === ' ') {
+            right--
+        } else {
+            break
+        }     
     }
 
-   while (true) {
-    
-    if (outStr[left] === ' ') {
-        left++
-    } else if ( outStr[right] === ' ') {
-        right--
-    } else {
-        break
+    if (left === 0 && right === el.length-1) {
+        console.log('строка без пробелов');
+        return el
     }
-   }
+    return el.slice(left,right+1)
 
-    return outStr.slice(left,right+1)
 }
 let space = spaceDelete(stroke)
-
 
 function out(str) {
     let out
