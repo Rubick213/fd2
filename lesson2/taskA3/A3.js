@@ -2,8 +2,8 @@
 let str = prompt('Введите строку')
 
 function palindrop (str) {
-    if (!str || str.trim() === '') {
-        return out('Error')
+    if (str === null) {
+        return str
     }
 
     let strLow = str.toLowerCase().replace(/[,.!";:?'-]/g, "").replace(/ /g,'').replace(/ё/g,'е').replace(/ь/g,'').replace(/ъ/g,'')
@@ -11,30 +11,43 @@ function palindrop (str) {
     let mid = Math.ceil((maxIndex) / 2)
     let midRound = maxIndex % 2 === 1 ? mid : mid + 1
 
-    console.log(`strLow => ${strLow}\nlength => ${strLow.length}\nmaxIndex => ${maxIndex}\nmid => ${mid}\nmidRound => ${midRound}`);
+    // console.log(`strLow => ${strLow}\nlength => ${strLow.length}\nmaxIndex => ${maxIndex}\nmid => ${mid}\nmidRound => ${midRound}`);
 
         for (let i = mid - 1; i >= 0; i--) {
-            // console.log([i,midRound]);
          
             if (strLow[i] === strLow[midRound]) {            
-            // console.log(`${strLow[i]}:${i} === ${strLow[mid+1]}:${midRound}`);
+            console.log(`${strLow}\nсимвол ${strLow[i]} под индексом ${i} РАВЕН символу ${strLow[i]} под индексом ${midRound}`);
             
             midRound++
          } else {
-            // console.log(`${strLow[i]}:${i} === ${strLow[midRound]}:${midRound}`);
+            console.log(`${strLow}\nсимвол ${strLow[i]} под индексом ${i} НЕ РАВЕН символу ${strLow[i]} под индексом ${midRound}`);
 
-            return out('Это не палиндроп')
+            return false
          }   
             
         }
         
-    return out('Это палиндроп')
+    return true
 }
-palindrop(str)
+let result = palindrop(str)
 
 function out(strOut) {
-    alert(strOut)
+    let res
+    switch (strOut) {
+        case null:
+            res = 'Отмена' 
+            break;
+        case false:
+            res = 'Это не палиндроп'
+            break;
+        default:
+            res = 'это палиндроп'
+            break;
+    }
+
+    return alert(res)
 }
+out(result)
 // Лида! Ланцет отец наладил.
 // Во, гробик - довод киборгоВ!
 // Во, дорубили б уродоВ!
@@ -48,3 +61,8 @@ function out(strOut) {
 // Ах, ортопед, где потрохА?
 //сашшас
 //сашас
+
+//вариант с рекрсией 
+
+
+
