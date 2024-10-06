@@ -49,54 +49,54 @@
 
 
 
-let strPalindrop = prompt()
+// let strPalindrop = prompt()
 
-function isPalindrome(str) {
-    console.log(str);
+// function isPalindrome(str) {
+//     console.log(str);
 
-    if (str === null) {
-        return str
-    }
-    if (str.trim() === '') {
-        return true
-    } 
+//     if (str === null) {
+//         return str
+//     }
+//     if (str.trim() === '') {
+//         return true
+//     } 
 
-    let strClear =  str.toLowerCase().replace(/[,.!";:?'-]/g, "").replace(/ /g,'').replace(/ё/g,'е').replace(/ь/g,'').replace(/ъ/g,'')
+//     let strClear =  str.toLowerCase().replace(/[,.!";:?'-]/g, "").replace(/ /g,'').replace(/ё/g,'е').replace(/ь/g,'').replace(/ъ/g,'')
  
-    function testPalindrome(test) {
-        console.log(test);
+//     function testPalindrome(test) {
+//         console.log(test);
 
-        if (test.length <= 1) {
-            return true
-        } 
+//         if (test.length <= 1) {
+//             return true
+//         } 
 
-        let min = 0
-        let max = test.length-1
+//         let min = 0
+//         let max = test.length-1
         
-        if (test[min] !== test[max]) {
-            return false
-        }
+//         if (test[min] !== test[max]) {
+//             return false
+//         }
 
-        return testPalindrome(test.substr(min+1,max - 1))
-    }
+//         return testPalindrome(test.substr(min+1,max - 1))
+//     }
 
-    return testPalindrome(strClear)
+//     return testPalindrome(strClear)
 
-}
+// }
 
 
 
-function result(element) {
-    let out
-     if (element === null) {
-        out = 'Отмена'
-     } else if (!element) {
-        out = 'Это не палиндроп'
-     } else {
-        out = 'Это палиндроп'
-     }
+// function result(element) {
+//     let out
+//      if (element === null) {
+//         out = 'Отмена'
+//      } else if (!element) {
+//         out = 'Это не палиндроп'
+//      } else {
+//         out = 'Это палиндроп'
+//      }
 
-    alert(out)
-}
+//     alert(out)
+// }
 
-result(isPalindrome(strPalindrop))
+// result(isPalindrome(strPalindrop))
