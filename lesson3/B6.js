@@ -28,11 +28,11 @@ function buildWrapper(str) {
 
         if (attributes) {
             for (const el in attributes) {
-                checkAttributes += `${el}='${attributes[el]}';`
+                checkAttributes += ` ${el}='${attributes[el]}';`
             }
         } 
 
-        let tagStart = `<${tag} ${checkAttributes}>`
+        let tagStart = `<${tag}${checkAttributes}>`
         let tagEnd = `</${tag}>`
         
         return `${tagStart}${strRpl}${tagEnd}`
