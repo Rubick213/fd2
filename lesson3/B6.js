@@ -46,7 +46,7 @@ let wrapP = buildWrapper(`'Какой нибуть "текст и &конечн�
 let wrapH1 = buildWrapper(`'Какой нибуть "текст и &конечно же <мнемоника>`)
 
 
-console.log(wrapP('p',testObj))
+console.log(wrapP('p'))
 console.log(wrapH1('h1',testObj))
 
 
