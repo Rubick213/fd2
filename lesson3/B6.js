@@ -23,7 +23,7 @@ function buildWrapper(str) {
         }
     }
 
-    let tagFunction = function (tag,attributes = '') {
+    return function (tag,attributes = '') {
         let checkAttributes = ''
 
         if (attributes) {
@@ -38,12 +38,16 @@ function buildWrapper(str) {
         return `${tagStart}${strRpl}${tagEnd}`
     }
 
-    return tagFunction
+    
 
 }
 
-let wrap = buildWrapper(`'Какой нибуть "текст и &конечно же <мнемоника>`)
-console.log(wrap('div',testObj))
+let wrapP = buildWrapper(`'Какой нибуть "текст и &конечно же <мнемоника>`)
+let wrapH1 = buildWrapper(`'Какой нибуть "текст и &конечно же <мнемоника>`)
 
 
-// document.write(wrap('h1',testObj))
+console.log(wrapP('p',testObj))
+console.log(wrapH1('h1',testObj))
+
+
+// document.write(wrapP('p',testObj))
