@@ -6,7 +6,6 @@
 
 
 function buildWrapper(tag,attributes) {
-
     let checkAttributes = ''
     let mnemonic = {
         '&': '&amp;',
@@ -17,16 +16,11 @@ function buildWrapper(tag,attributes) {
     }
 
     if (attributes) {
-        
-        for (const el in attributes) {
-          for(const valueMnemonic in mnemonic) {
-            if (attributes[el].includes(valueMnemonic)) {
-                attributes[el] = attributes[el].replaceAll(valueMnemonic,mnemonic[valueMnemonic])
+        let objMnemonic = attributes
+        for (const el in objMnemonic) {
+            let valueMnemonic = testMnemonic(objMnemonic[el],mnemonic)
 
-                // console.log(`${attributes[el]} : ключ=${valueMnemonic} значение=${mnemonic[valueMnemonic]}`);
-            }
-          }   
-        checkAttributes += ` ${el}='${attributes[el]}';`
+            checkAttributes += ` ${el}='${valueMnemonic}';`
         };
     } 
 
@@ -34,27 +28,32 @@ function buildWrapper(tag,attributes) {
     let tagEnd = `</${tag}>`
 
     return function (str) {
-            let strRpl = str
-            for (const el in mnemonic) {
-                if (str.includes(el)) {
-                     strRpl = strRpl.replaceAll(el,mnemonic[el])
-                
-                    // console.log(el,mnemonic[el]);
-                }
-            } 
+            let strRpl = testMnemonic(str,mnemonic)
+            
             return `${tagStart}${strRpl}${tagEnd}`
     } 
 }
 
+function testMnemonic(str,obj) {
+    let resultStr = str
+    for (const el in obj) {
+        if (resultStr.includes(el)) {
+             resultStr = resultStr.replaceAll(el,obj[el])
+        
+            // console.log(el,obj[el]);
+        }
+    } 
+    return resultStr
+}
 
 // let wrapP = buildWrapper(`p`)
 let wrapH1 = buildWrapper('h1',testObj)
 
 
 // console.log(wrapP(`'Какой нибуть текст и конечно же <мнемоника>`))
-console.log(wrapH1(`Ю>>>`))
+console.log(wrapH1(`'Какой нибуть текст и конечно же <мнемоника>`))
 
 
-document.write(wrapH1(`привет ка кедела`))
+// document.write(wrapH1(`привет как едела`))
 
 
