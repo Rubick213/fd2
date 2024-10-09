@@ -1,53 +1,60 @@
  let testObj = {
     align: 'center',
-    title:'M&amp;M&apos;s',
+    title:"M&M's",
     class: 'string',
  }
 
 
-function buildWrapper(str) {
-    let strRpl = str
+function buildWrapper(tag,attributes) {
+
+    let checkAttributes = ''
     let mnemonic = {
-        '&': '&#38;',
-        "'": '&#39;',
-        '"': '&#34;',
-        '>': '&#62;',
-        '<': '&#60;',   
+        '&': '&amp;',
+        "'": '&apos;',
+        '"': '&quot;',
+        '>': '&gt;',
+        '<': '&lt;',   
     }
 
-    for (const el in mnemonic) {
-        if (strRpl.includes(el)) {
-            strRpl = strRpl.replaceAll(el,mnemonic[el])
-
-            // console.log(el,mnemonic[el]);
-        }
-    }
-
-    return function (tag,attributes = '') {
-        let checkAttributes = ''
-
-        if (attributes) {
-            for (const el in attributes) {
-                checkAttributes += ` ${el}='${attributes[el]}';`
-            }
-        } 
-
-        let tagStart = `<${tag}${checkAttributes}>`
-        let tagEnd = `</${tag}>`
+    if (attributes) {
         
-        return `${tagStart}${strRpl}${tagEnd}`
-    }
+        for (const el in attributes) {
+          for(const valueMnemonic in mnemonic) {
+            if (attributes[el].includes(valueMnemonic)) {
+                attributes[el] = attributes[el].replaceAll(valueMnemonic,mnemonic[valueMnemonic])
 
-    
+                // console.log(`${attributes[el]} : ключ=${valueMnemonic} значение=${mnemonic[valueMnemonic]}`);
+            }
+          }   
+        checkAttributes += ` ${el}='${attributes[el]}';`
+        };
+    } 
 
+    let tagStart = `<${tag}${checkAttributes}>`
+    let tagEnd = `</${tag}>`
+
+    return function (str) {
+            let strRpl = str
+            for (const el in mnemonic) {
+                if (str.includes(el)) {
+                     strRpl = strRpl.replaceAll(el,mnemonic[el])
+                
+                    // console.log(el,mnemonic[el]);
+                }
+            } 
+            return `${tagStart}${strRpl}${tagEnd}`
+    } 
 }
 
-let wrapP = buildWrapper(`'Какой нибуть "текст и &конечно же <мнемоника>`)
-let wrapH1 = buildWrapper(`'Какой нибуть "текст и &конечно же <мнемоника>`)
+
+// let wrapP = buildWrapper(`p`)
+let wrapH1 = buildWrapper('h1',testObj)
 
 
-console.log(wrapP('p'))
-console.log(wrapH1('h1',testObj))
+// console.log(wrapP(`'Какой нибуть текст и конечно же <мнемоника>`))
+console.log(wrapH1(`Ю>>>`))
 
 
-// document.write(wrapP('p',testObj))
+document.write(wrapH1(`привет ка кедела`))
+
+
