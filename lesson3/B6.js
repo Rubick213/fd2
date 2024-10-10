@@ -1,12 +1,5 @@
- let testObj = {
-    align: 'center',
-    title:"M&M's",
-    class: 'string',
- }
 
-
-function buildWrapper(tag,attributes) {
-    let checkAttributes = ''
+function buildWrapper(tag) {
     let mnemonic = {
         '&': '&amp;',
         "'": '&apos;',
@@ -15,22 +8,23 @@ function buildWrapper(tag,attributes) {
         '<': '&lt;',   
     }
 
-    if (attributes) {
-        let objMnemonic = attributes
-        for (const el in objMnemonic) {
-            let valueMnemonic = testMnemonic(objMnemonic[el],mnemonic)
+    return function (str, attributes) {
+        let checkAttributes = ''
 
-            checkAttributes += ` ${el}='${valueMnemonic}';`
-        };
-    } 
-
-    let tagStart = `<${tag}${checkAttributes}>`
-    let tagEnd = `</${tag}>`
-
-    return function (str) {
-            let strRpl = testMnemonic(str,mnemonic)
+        if (attributes) {
+            let objMnemonic = attributes
             
-            return `${tagStart}${strRpl}${tagEnd}`
+            for (const el in objMnemonic) {
+                let valueMnemonic = testMnemonic(objMnemonic[el],mnemonic)
+                checkAttributes += ` ${el}='${valueMnemonic}'`
+            };
+        } 
+    
+        let tagStart = `<${tag}${checkAttributes}>`
+        let tagEnd = `</${tag}>`
+        let strRpl = testMnemonic(str,mnemonic)
+
+        return `${tagStart}${strRpl}${tagEnd}`
     } 
 }
 
@@ -46,14 +40,11 @@ function testMnemonic(str,obj) {
     return resultStr
 }
 
-// let wrapP = buildWrapper(`p`)
-let wrapH1 = buildWrapper('h1',testObj)
+let wrapP = buildWrapper(`P`)
+let wrapH1 = buildWrapper('H1')
 
-
-// console.log(wrapP(`'Какой нибуть текст и конечно же <мнемоника>`))
-console.log(wrapH1(`'Какой нибуть текст и конечно же <мнемоника>`))
-
-
-// document.write(wrapH1(`привет как едела`))
-
+console.log( wrapP("Однажды в студёную зимнюю пору") );
+console.log( wrapP("Однажды в студёную зимнюю пору",{lang:"ru"}) );
+console.log( wrapP("Однажды в <студёную> зимнюю пору") );
+console.log( wrapH1("СТИХИ",{align:"center",title:"M&M's"}) );
 
