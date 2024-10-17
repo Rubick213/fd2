@@ -32,7 +32,7 @@
 // console.log(StorageFunc);
 
 
-//3
+//3 
 function ObjStorageFunc() {
     let self = this
 
