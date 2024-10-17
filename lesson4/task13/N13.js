@@ -143,8 +143,6 @@ function bool(arr) {
         }
         res[arr[i]] = valuesRes
     } 
-    // res['Страна происхождения'] = testPrompt('Страна происхождения');
-    // res['рецепт преготовления'] = testPrompt('рецепт преготовления');
     return res
 }
 
