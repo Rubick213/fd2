@@ -36,46 +36,26 @@
 function ObjStorageFunc() {
     let self = this
 
-    self.drinkStorage = {}
+    self.storage = {}
 
     self.addValue = function(key,value) {
-        self.drinkStorage[key] = value
+        self.storage[key] = value
     }
     self.getValue = function(key) {
-        if (key in self.drinkStorage) {
-            let infoOut = `название: ${key}\n`
-            let objectDrink =  self.drinkStorage[key]
-            for (const el in objectDrink) {                
-                let keys = el;
-                let values = objectDrink[el];
-                infoOut += `${keys} : ${values}\n`
-
-                console.log(keys);
-            }
-            outAlert(infoOut)
-        } else {
-            outAlert('В списке такого напитка нет')
-        }
-        // return self.drinkStorage[key]
+        return self.storage[key]
     }
     self.deleteValue = function(key) {
-        if (key in self.drinkStorage) {
-            delete self.drinkStorage[key]
-            outAlert('Удаленно')
-        } else {
-            outAlert('Не удалено')
-        }
+        if (key in self.storage) {
+            delete self.storage[key]
+            return true
+        } 
+        return false
     }
     self.getKeys = function() {
-        let arrObj = Object.keys(self.drinkStorage).join(',')
-        console.log(arrObj);
-        if (arrObj.length > 0) {
-            outAlert(arrObj)
-        } else {
-            outAlert('В списке нет напитков')
-        }
+        return  Object.keys(self.storage)
     }
 }
+
 let Alko = new ObjStorageFunc()
 
 
@@ -85,6 +65,7 @@ test.forEach(elBtn => {
         let setId = elBtn.dataset.id
         let key
         let value
+        let outFunc
         switch (setId) {
             case '1':
                 key = testPrompt('Введите название напитка')
@@ -94,26 +75,28 @@ test.forEach(elBtn => {
                         Alko.addValue(key ,value)
                     }
                 }
-                console.log(Alko.drinkStorage);
                 break;
             case '2':
                 key = testPrompt('Название для информации напитка')
                 if(key) {
-                    Alko.getValue(key)
+                  outFunc = Alko.getValue(key)
+                  out(outFunc,key)
                 }
-                console.log(Alko.drinkStorage);
                 break;
             case '3':
                 key = testPrompt('Какой напиток удалить ?')
                 if (key) {
-                    Alko.deleteValue(key)
+                    outFunc = Alko.deleteValue(key)
+                    out(outFunc)
                 }
-                console.log(Alko.drinkStorage);
+                
                 break;
             case '4':
-                Alko.getKeys()
+                outFunc = Alko.getKeys()
+                out(outFunc)
                 break;
         }
+        console.log(`обработчик событий для кнопок =>`, Alko.storage);
     })
 });
 
@@ -124,7 +107,7 @@ function testPrompt(str) {
     while (true) {
         resultPrompt = prompt(str)
         if (resultPrompt === null) {
-            outAlert('До свидания')
+            alert('До свидания')
             return resultPrompt
         }
         if (resultPrompt.trim()) {
@@ -147,6 +130,29 @@ function bool(arr) {
 }
 
 //функция оповещения пользователя
-function outAlert(str) {
-    alert(str)
+function out(value,name = null) {
+    switch (value) {
+        case undefined:
+            alert('напитка нет в списке')
+            break;
+        case false:
+        alert('Не удалено:\nв списке нет напитка!')
+            break;
+        case true:
+        alert('Удалено!')
+            break;
+        default:
+            if (Array.isArray(value)) {
+                let testArr = value.length > 0 ? value.join(',') : 'Список пуст!'
+                alert(testArr)
+            } else {
+                let str = `напиток : ${name}\n`
+                for (const key in value) {
+                    str += `${key}: ${value[key]}\n`
+                }
+                alert(str)
+            }
+            break;
+    }
+    console.log(`функция вывода => ${value} `);
 }
