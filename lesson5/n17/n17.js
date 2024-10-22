@@ -33,11 +33,10 @@ console.log(methodFilter);
 function vowelReduce (arr,stroke) {
     let strokeArr = stroke.split('');
 
-    let count = strokeArr.reduce((box, el) => {
-      return  arr.includes(el) ? box += 1 : box
-    },0);
     
-    return count
+    return strokeArr.reduce((box, el) => {
+        return  arr.includes(el) ? box += 1 : box
+      },0);
 }
 const methodReduce = vowelReduce(vowelArr,str)
 console.log(methodReduce);
