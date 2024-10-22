@@ -156,3 +156,4 @@ function out(value,name = null) {
     }
     console.log(`функция вывода => ${value} `);
 }
+
