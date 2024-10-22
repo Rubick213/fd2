@@ -3,8 +3,7 @@
 //  этого получалось NaN и -infinity  
 
 function squareRoots(a,b,c) {
-    if (a === 0 ) {
-        
+    if (a === 0 ) {      
         return [-(c / b)] 
     }
 
@@ -40,7 +39,7 @@ function resultSqrt() {
         alert(`Корней два! : ${roots[0]}, ${roots[1]}`)
     }
 }
-resultSqrt()
+
 
 
 function squareRootsTests() {
@@ -79,6 +78,4 @@ function squareRootsTests() {
         console.log( ((roots.length==1)&&(roots[0]==2))
             ?'пройден':'НЕ ПРОЙДЕН!' )
     }
-
 }
-// squareRootsTests()
