@@ -98,9 +98,9 @@ function testCopy(original,copy,objTest) {
     console.log(`всего тестов ${countTest}: из них прошли ${yeas}, и не прошли ${no}`);
 }
 // testCopy(a1,a2,testH1)
-// testCopy(a1,a2,testA1)
-// testCopy(a1,a2,testV1)
-// testCopy(a1,a2,testZ1)
-// testCopy(a1,a2,testN1)
+// testCopy(h1,h2,testA1)
+// testCopy(v1,v2,testV1)
+// testCopy(z1,z2,testZ1)
+// testCopy(n1,n2,testN1)
 
 
