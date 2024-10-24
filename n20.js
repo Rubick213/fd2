@@ -79,3 +79,14 @@ function squareRootsTests() {
             ?'пройден':'НЕ ПРОЙДЕН!' )
     }
 }
+
+try{
+    console.log('до исключения');
+    let a = b
+    console.log('после исключения ');
+}
+catch(ex){
+    console.error('исключение');
+    console.warn(`имя : ${ex.name}`);
+    console.error((`тип: ${ex.message}`));
+}
