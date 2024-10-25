@@ -4,6 +4,17 @@ var v1="sss";
 var z1=null;
 var n1=Number.NaN;
 
+const x1 = [
+    {name:true,age:23,arr:[1,2,3]},
+    23,
+    'stroke',
+    [ {'1':true,'2':false,'3':NaN}, {'2.1': 'sasha','2.2':24,'2.3':[1,2,3,4,5,[11,22,33]]} ],
+    [1,2,3,[4,5,6,[7,8,9]]],
+    [{},{},{}]
+]
+
+
+
 
 function deepCopy(collections) { 
     // console.log(collections);
@@ -12,12 +23,19 @@ function deepCopy(collections) {
         return collections
     }
 
-    let outCopy = Array.isArray(collections)? [] : {}
+    let outCopy = Array.isArray(collections)? new Array() : {}
 
-    
-    for (const key in collections) {
-        outCopy[key] = deepCopy(collections[key])             
-    }    
+    if (Array.isArray(collections)) {
+        collections.forEach(el => {
+            outCopy.push(deepCopy(el))
+            // console.log(outCopy);
+        })
+    } 
+    if (typeof collections === 'object' && collections !== null) {     
+        for (const key in collections) {
+            outCopy[key] = deepCopy(collections[key])             
+        }  
+    }
     
     return outCopy
 }
@@ -26,7 +44,8 @@ var a2 = deepCopy(a1);
 var v2 = deepCopy(v1);
 var z2 = deepCopy(z1);
 var n2 = deepCopy(n1)
-
+const x2 = deepCopy(x1)
+console.log(x1);
 
 
 
@@ -69,8 +88,14 @@ const testN1 = {
     '1': [typeof(v2), typeof(v1),true],
     '2': [isNaN(n2),true]
 }
-
-
+const testX1 = {
+    '1': [x1,x2,false],
+    '2': [x1[2],x2[2],true],
+    '3': [x1[0],x2[0],false],
+    '4': [x1[0].age,x2[0].age,true],
+    '5': [x1[0].arr,x2[0].arr,false],
+    '6': [x1[3][1]['2.3'][5],x2[3][1]['2.3'][5],false]
+};
 
 function testCopy(original,copy,objTest) {
     let no = 0;
@@ -102,5 +127,4 @@ function testCopy(original,copy,objTest) {
 // testCopy(v1,v2,testV1)
 // testCopy(z1,z2,testZ1)
 // testCopy(n1,n2,testN1)
-
-
+// testCopy(x1,x2,testX1)
