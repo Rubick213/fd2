@@ -23,20 +23,21 @@ function deepCopy(collections) {
         return collections
     }
 
-    let outCopy = Array.isArray(collections)? new Array() : {}
+    let outCopy
 
     if (Array.isArray(collections)) {
+        outCopy = []
         collections.forEach(el => {
             outCopy.push(deepCopy(el))
             // console.log(outCopy);
         })
-    } 
-    if (typeof collections === 'object' && collections !== null) {     
+    } else {     
+        outCopy = {}
         for (const key in collections) {
             outCopy[key] = deepCopy(collections[key])             
         }  
-    }
     
+}
     return outCopy
 }
 var h2 = deepCopy(h1)
