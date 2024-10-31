@@ -22,30 +22,109 @@ const formDef2=
 ];
 
 
-const form = document.getElementById('dynForm')
-function form1() {
-    aaa()
-}
-// form1()
-
-
-
-class Test {
-    method(text) {
-        console.log(text);
+//f1
+function formSite(date) {
+    let form = setForm('get')
+    for (let i = 0; i < date.length; i++) {
+        let element = date[i]
+        let setBlock = block(element)
+        form.appendChild(setBlock)
     }
+   
+    document.body.appendChild(form)
+    
+}
+formSite(formDef1)
+formSite(formDef2)
+
+
+function setForm (method) {
+    let form = document.createElement('form')
+    form.setAttribute('action','https://fe.it-academy.by/TestForm.php')
+    form.setAttribute('method', method)
+    return form
 }
 
-let T = new Test()
-T.method('global method')
+function block (obj) {
+    let div = document.createElement('div')
+    div.className = 'inputCapsul'
+    let out
 
-class TestNas1{
-    method(test){
-        console.log(test + test)
+    let variantValue
+    if (obj.hasOwnProperty('label')) { 
+        let label = document.createElement('label')
+        label.className = 'labelInfo'
+        label.innerText = obj.label
+        div.appendChild(label)
+        // console.log(label.innerText);
+
+        let kind = obj.kind        
+        switch (kind) {
+            case 'longtext':
+            case 'shorttext':
+                out = document.createElement('input')
+                out.setAttribute('type','text')
+                out.setAttribute('name', obj.name)
+                break;
+            case 'number':
+                out= document.createElement('input')
+                out.setAttribute('type','number')
+                out.setAttribute('name', obj.name)
+                break;
+            case 'dropdown':
+                out = document.createElement('select')
+                variantValue = obj.variants 
+                out.setAttribute('name',obj.name)
+
+                variantValue.forEach(el => {
+                    let option = document.createElement('option')
+                    option.setAttribute('value',el.value)
+                    option.innerText = el.text
+                    out.appendChild(option)   
+                })
+                out.selectedIndex = 2
+                break;
+            case 'radio':
+                div.className = 'inputCapsulRadio'
+                let radioDiv = document.createElement('div')
+                radioDiv.className = 'radioDiv'
+                variantValue = obj.variants
+                variantValue.forEach(el => {
+                    let radio = document.createElement('input');
+                    radio.setAttribute('type', 'radio');
+                    radio.setAttribute('value', el.value);
+                    radio.setAttribute('name', obj.name);
+                    radioDiv.appendChild(radio);
+
+                    let radioLabel = document.createElement('label');
+                    radioLabel.setAttribute('value',el.value)
+                    radioLabel.innerText = el.text;
+                    radioDiv.appendChild(radioLabel);
+                })
+                div.appendChild(radioDiv)
+                return div
+            case 'check':
+                out = document.createElement('input')
+                out.setAttribute('type', 'checkbox')
+                out.setAttribute('checked',true)
+                out.setAttribute('name',obj.name)
+                break;
+            case 'memo':
+                out = document.createElement('textarea')
+                div.className = 'area'
+                out.setAttribute('name',obj.name)
+                break;
+        }
+        
+    } 
+    if (obj.hasOwnProperty('caption')) {
+        out = document.createElement('input')
+        out.setAttribute('type','submit')
+        out.setAttribute('value', obj.caption)
     }
+    div.appendChild(out)
+    return div
 }
-let T1 = new TestNas1()
-T1.method('h')
 
 
 
@@ -57,4 +136,13 @@ T1.method('h')
 
 
 
-// 
+
+
+
+
+
+
+
+
+
+

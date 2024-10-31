@@ -1,0 +1,28 @@
+/* *{
+    outline: 1px solid red;
+} */
+.inputCapsul{
+}
+
+.labelInfo{
+    display: inline-block;
+    min-width: 200px;
+    color: red;
+}
+.radioDiv{
+    
+}
+.inputCapsulRadio{
+    display: flex;
+}
+.area {
+    display: flex;
+    flex-direction: column;
+}
+.area label {
+    
+}
+.area textarea {
+    width: 100%;
+}
+
