@@ -252,4 +252,4 @@ function testCopy(ArrTest,name) {
 
 
 
-console.log();
+console.log(2);
