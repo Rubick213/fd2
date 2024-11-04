@@ -249,3 +249,7 @@ function testCopy(ArrTest,name) {
     console.log(`всего тестов ${countTest}: из них прошли ${yeas}, и не прошли ${no}`);
 }
 
+
+
+
+console.log();
