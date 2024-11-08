@@ -1,0 +1,33 @@
+*{
+    /* outline: 1px solid rgba(255, 0, 0, 0.367); */
+}
+.formBox{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    flex-wrap: nowrap;
+}
+.title_span{
+    display: inline-block;
+    width: 170px;
+}
+
+.long_text {
+    width: 550px;
+}
+.textArea{
+    width: 725px;
+    height: 70px;
+}
+.btn {
+    
+}
+.error {
+    visibility: hidden;
+    color: red;
+    margin-left: 20px;
+}
+
+.errorBlock {
+    visibility: visible;
+}
