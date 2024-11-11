@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="DRAGNDROP.css"> -->
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>    
+    <img src='http://fe.it-academy.by/Sites/0000007/sax.jpg'>
+    <img src='http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png' width=100>
+    <img src='http://fe.it-academy.by/Sites/0000007/Man-and-woman.png' width=150>
+    <img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'> 
+    <!-- <img src='http://fe.it-academy.by/Sites/0000007/sax.jpg'>
+    <img src='http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png' width=100>
+    <img src='http://fe.it-academy.by/Sites/0000007/Man-and-woman.png' width=150>
+    <img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'>
+    <img src='http://fe.it-academy.by/Sites/0000007/sax.jpg'>
+    <img src='http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png' width=100>
+    <img src='http://fe.it-academy.by/Sites/0000007/Man-and-woman.png' width=150>
+    <img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'>
+    <img src='http://fe.it-academy.by/Sites/0000007/sax.jpg'>
+    <img src='http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png' width=100>
+    <img src='http://fe.it-academy.by/Sites/0000007/Man-and-woman.png' width=150>
+    <img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'>   -->
+    <script>
+        window.addEventListener('load',()=>{
+        const body = document.querySelector('body');
+        const img = body.querySelectorAll('img');
+        let zetIndex = 0;
+        (function () {
+            for (let i = img.length-1; i >= 0; i--){
+                let posInfo = img[i].getBoundingClientRect()
+                let scrollY = window.scrollY
+                let posTop = posInfo.top + scrollY
+                img[i].style.position = 'absolute'
+                img[i].style.top = posTop+'px'
+                img[i].style.left = posInfo.left+'px'
+                img[i].style.zIndex = zetIndex
+            };
+        }
+        ())    
+        
+        let type = null
+        let targetImg = null
+        let offsetX_Mouse // offsetX 
+        let offsetY_Mouse // offsetY
+        let clientRect
+        
+        function mouse(event) {
+            event.preventDefault()
+            type = event.type
+            targetImg = event.target
+            if (event.type === 'mousedown') {
+                    if (event.target.tagName === 'IMG' && event.which === 1) {
+                        offsetX_Mouse = event.offsetX
+                        offsetY_Mouse = event.offsetY
+                        targetImg.style.cursor = 'grabbing'
+                        zetIndex++
+                        window.addEventListener('mousemove',move)
+                }
+            }
+            if (event.type === 'mouseup') {
+                if (targetImg) {
+                    targetImg.style.cursor = 'context-menu'
+                    window.removeEventListener('mousemove',move)
+                    targetImg = null
+                }
+                
+            }
+        }
+
+        function move(event) {
+            if (event.offsetY < 0) {
+                targetImg.style.cursor = 'context-menu'
+            }
+            if (targetImg) {
+                event.preventDefault()            
+                let y1 = event.clientY - offsetY_Mouse
+                let x1 = event.clientX - offsetX_Mouse
+                targetImg.style.top = (y1 + window.scrollY) + 'px'
+                targetImg.style.left = x1 + 'px'
+                targetImg.style.zIndex = zetIndex
+                //////////////////////////////////////////
+                // console.log(event.clientX,event.clientY);
+            }
+            
+        }
+        window.addEventListener('mousedown',mouse)
+        window.addEventListener('mouseup', mouse)
+    })
+    </script>
+</body>
+</html>
