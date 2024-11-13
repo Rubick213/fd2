@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="DRAGNDROP.css"> -->
+    <link rel="stylesheet" href="DRAGNDROP.css">
     <title>Document</title>
     <style>
     </style>
@@ -14,7 +14,7 @@
     <img src='http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png' width=100>
     <img src='http://fe.it-academy.by/Sites/0000007/Man-and-woman.png' width=150>
     <img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'> 
-    <!-- <img src='http://fe.it-academy.by/Sites/0000007/sax.jpg'>
+    <img src='http://fe.it-academy.by/Sites/0000007/sax.jpg'>
     <img src='http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png' width=100>
     <img src='http://fe.it-academy.by/Sites/0000007/Man-and-woman.png' width=150>
     <img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'>
@@ -41,34 +41,26 @@
     <img src='http://fe.it-academy.by/Sites/0000007/sax.jpg'>
     <img src='http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png' width=100>
     <img src='http://fe.it-academy.by/Sites/0000007/Man-and-woman.png' width=150>
-    <img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'>   -->
+    <img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'>  
     <script>
         window.addEventListener('load',()=>{
         const body = document.querySelector('body');
         const img = body.querySelectorAll('img');
         let zetIndex = 0;
         (function () {
-            let maxHeightImg = 0
-            let test = 0
-            img.forEach(el => {
-                if ( maxHeightImg < el.offsetHeight) {
-                    maxHeightImg = el.offsetHeight
-                }
-            })
             
-            for (let i = img.length-1; i >= 0; i--){
-                let posInfo = img[i].getBoundingClientRect()
-
-                if (img[i].getBoundingClientRect().height === maxHeightImg) {
-                    test = img[i].offsetTop
-                }
-                
-                let scrollY = window.scrollY
-                let posTop = posInfo.top + scrollY
+            let obj = []
+            img.forEach(el => {
+                obj.push({top:el.offsetTop,left:el.offsetLeft})
+            })
+            console.log(obj);
+            for (let i = 0; i <= obj.length-1; i++){
+                let top = obj[i].top
+                let left = obj[i].left            
                 img[i].style.position = 'absolute'
-                img[i].style.top = maxHeightImg - img[i].getBoundingClientRect().height + test + 'px'
-                img[i].style.left = posInfo.left+'px'
-                img[i].style.zIndex = zetIndex
+                img[i].style.top = top + 'px'
+                img[i].style.left = left+'px'
+                img[i].style.zIndex = zetIndex              
             };
         }
         ())    

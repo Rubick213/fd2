@@ -1,9 +1,12 @@
-/* *{
-    margin: 0;
-    padding: 0;
-} */
+*{
+    /* margin: 0; */
+    /* padding: 0; */
+}
+html{
+
+}
 body{
-    
+   
     /* background-color: brown; */
     /* min-height: 1000vh; */
 }
