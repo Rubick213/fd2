@@ -9,12 +9,28 @@
     <style>
     </style>
 </head>
-<body>    
+<body  style='min-height: 100vh'>    
     <img src='http://fe.it-academy.by/Sites/0000007/sax.jpg'>
     <img src='http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png' width=100>
     <img src='http://fe.it-academy.by/Sites/0000007/Man-and-woman.png' width=150>
     <img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'> 
     <!-- <img src='http://fe.it-academy.by/Sites/0000007/sax.jpg'>
+    <img src='http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png' width=100>
+    <img src='http://fe.it-academy.by/Sites/0000007/Man-and-woman.png' width=150>
+    <img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'>
+    <img src='http://fe.it-academy.by/Sites/0000007/sax.jpg'>
+    <img src='http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png' width=100>
+    <img src='http://fe.it-academy.by/Sites/0000007/Man-and-woman.png' width=150>
+    <img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'>
+    <img src='http://fe.it-academy.by/Sites/0000007/sax.jpg'>
+    <img src='http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png' width=100>
+    <img src='http://fe.it-academy.by/Sites/0000007/Man-and-woman.png' width=150>
+    <img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'>  
+    <img src='http://fe.it-academy.by/Sites/0000007/sax.jpg'>
+    <img src='http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png' width=100>
+    <img src='http://fe.it-academy.by/Sites/0000007/Man-and-woman.png' width=150>
+    <img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'> 
+    <img src='http://fe.it-academy.by/Sites/0000007/sax.jpg'>
     <img src='http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png' width=100>
     <img src='http://fe.it-academy.by/Sites/0000007/Man-and-woman.png' width=150>
     <img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'>
@@ -32,13 +48,22 @@
         const img = body.querySelectorAll('img');
         let zetIndex = 0;
         (function () {
+            let maxHeightImg = 0
+            let test
+            img.forEach(el => {
+                if ( maxHeightImg < el.offsetHeight) {
+                    maxHeightImg = el.offsetHeight
+                }
+            })
+            
             for (let i = img.length-1; i >= 0; i--){
-                let posInfo = img[i].getBoundingClientRect()
-                let scrollY = window.scrollY
-                let posTop = posInfo.top + scrollY
+
+                if (posInfo.height === maxHeightImg) {
+                    test = img[i].offsetTop
+                }
                 img[i].style.position = 'absolute'
-                img[i].style.top = posTop+'px'
-                img[i].style.left = posInfo.left+'px'
+                img[i].style.top = maxHeightImg - img[i].getBoundingClientRect().height + test + 'px'
+                img[i].style.left = img[i].getBoundingClientRect().left+'px'
                 img[i].style.zIndex = zetIndex
             };
         }
@@ -48,7 +73,6 @@
         let targetImg = null
         let offsetX_Mouse // offsetX 
         let offsetY_Mouse // offsetY
-        let clientRect
         
         function mouse(event) {
             event.preventDefault()
