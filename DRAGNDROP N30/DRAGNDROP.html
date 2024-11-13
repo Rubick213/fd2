@@ -49,7 +49,7 @@
         let zetIndex = 0;
         (function () {
             let maxHeightImg = 0
-            let test
+            let test = 0
             img.forEach(el => {
                 if ( maxHeightImg < el.offsetHeight) {
                     maxHeightImg = el.offsetHeight
@@ -59,14 +59,14 @@
             for (let i = img.length-1; i >= 0; i--){
                 let posInfo = img[i].getBoundingClientRect()
 
-                if (posInfo.height === maxHeightImg) {
+                if (img[i].getBoundingClientRect().height === maxHeightImg) {
                     test = img[i].offsetTop
                 }
                 
                 let scrollY = window.scrollY
                 let posTop = posInfo.top + scrollY
                 img[i].style.position = 'absolute'
-                img[i].style.top = maxHeightImg - posInfo.height + test + 'px'
+                img[i].style.top = maxHeightImg - img[i].getBoundingClientRect().height + test + 'px'
                 img[i].style.left = posInfo.left+'px'
                 img[i].style.zIndex = zetIndex
             };
