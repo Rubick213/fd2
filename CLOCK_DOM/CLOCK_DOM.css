@@ -1,0 +1,49 @@
+
+
+.hour{
+    width: 5%;
+    height: calc(50% - 40px);
+    position: absolute;
+    top: 60px;
+    left: calc(50% - 5% / 2);
+    z-index: 1;
+    border-radius: 20px;
+    transform: rotate(0deg);
+    transform-origin: 50% calc(100% - 20px);
+    background-color: rgb(44, 42, 42);
+}
+.minute{
+    width: 3%;
+    height: calc(50% - 10px);
+    position: absolute;
+    top: 30px;
+    left: calc(50% - 3% / 2);/*ширина род.блока - ширина доч элемента / 2*/
+    z-index: 2;
+    border-radius: 20px;
+    transform-origin: 50% calc(100% - 20px);
+    background-color: rgb(44, 42, 42);
+}
+.second{
+    width: 1%;
+    height: calc(50% + 10px);
+    position: absolute;
+    top: 10px;
+    left: calc(50% - 1% / 2); /*ширина род.блока - ширина доч элемента / 2*/
+    z-index: 3;
+    border-radius: 20px;
+    transform-origin: 50% calc(100% - 20px);
+    background-color: rgb(44, 42, 42);
+}
+.screen {
+    width: 50%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 25%;
+    left: calc(50% - 50% / 2);/*ширина род.блока - ширина доч элемента / 2*/
+    z-index: 1000;
+    color: black;
+    font-weight: bold;
+}

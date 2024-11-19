@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="test.css">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div class="box">
+        <div data-set="1" class="capsul"></div>
+        <div data-set="2" class="capsul"></div>
+        <div data-set="3" class="capsul"></div>
+        <div data-set="4" class="capsul"></div>
+        <div data-set="5" class="capsul"></div>
+        <div data-set="6" class="capsul"></div>
+        <div data-set="7" class="capsul"></div>
+        <div data-set="8" class="capsul"></div>
+        <div data-set="9" class="capsul"></div>
+        <div data-set="10" class="capsul"></div>
+        <div data-set="11" class="capsul"></div>
+        <div data-set="12" class="capsul"></div>
+        <div data-set="13" class="capsul"></div>
+        <div data-set="14" class="capsul"></div>
+        <div data-set="15" class="capsul"></div>
+        <div data-set="16" class="capsul"></div>
+    </div> -->
+    <input type="but">
+    <script src="test.js">
+//         'use strict'
+// const body = document.body
+// const container = body.querySelector('.container')
+// // const InputDiameter = document.getElementById('diameterClock')
+// const btn = document.getElementById('btn')
+// let InputDiameter = 300
+
+// // btn.addEventListener('click', buildClock)
+// function buildClock(event) {
+//     const value = Number(InputDiameter)//InputDiameter.value!!!
+//     if (value && value > 200 || value && !(value < 800 )) {
+//         container.style.display = 'none'
+//         let wrapClock = document.createElement('div') // создаем радиус часов(род блок)
+//         wrapClock.style.width = value+'px'
+//         wrapClock.style.height = value+'px'
+//         wrapClock.style.backgroundColor = '#FCCA66'
+//         wrapClock.style.borderRadius = '50%'
+//         // wrapClock.style.border = '3px solid black'
+//         wrapClock.style.position = 'relative'
+
+//         {///test center circle
+//             let c = document.createElement('div')
+//             c.setAttribute('class', 'test')
+//             wrapClock.appendChild(c)
+
+//         }
+        
+//         let angle  //угол поворота
+//         let angleArrow //угол стрелки
+//         let absoluteWidth = (15 / 100) * value // ширина цифр-часов по отношению род блока (15%)
+//         let rastouan = (80 / 100) * value / 2 // растояние цифр-часов по отношению центра род блока (80%)
+//         let center =  value /2 // центр круга по оси 'X' и 'Y'
+
+//         let time = new Date()
+//         let sec = time.getSeconds()
+//         let min = time.getMinutes()
+//         let hour = time.getHours()
+//         { // стрелки минуты секунды и часы
+//             let minuteArrow = document.createElement('div') // стрелка минуты
+//             minuteArrow.setAttribute('class','minute')
+//             // minuteArrow.style.backgroundColor = 'grey'
+//             // let mw = minuteArrow.style.width = (3/100)*value + 'px'
+//             // minuteArrow.style.height = center - 20 + 'px'
+//             // console.log(minuteArrow.offsetWidth);
+//             // minuteArrow.style.position = 'absolute'
+//             // minuteArrow.style.zIndex = 2
+//             // minuteArrow.style.top = 20 + 'px'
+//             // minuteArrow.style.left = center - parseInt(9)/2 + 'px'
+//             // minuteArrow.style.borderTopRightRadius = 20 + 'px'// округление
+//             // minuteArrow.style.borderTopLeftRadius = 20 + 'px'
+//             // minuteArrow.style.transformOrigin = 'bottom'
+//             minuteArrow.style.transform=`rotate(${min*360/60}deg)`
+//             wrapClock.appendChild(minuteArrow)
+//             /////////////////////////////////////////////////////
+//             let secondArrow = document.createElement('div') // стрелка секунды
+//             secondArrow.setAttribute('class','second')
+//             // secondArrow.style.backgroundColor = 'black'
+//             // let sw=secondArrow.style.width = (1/100)*value + 'px' // ширина секундной стрелки по отношению радиуса часов
+//             // secondArrow.style.height = center - 5 + 'px'
+//             // secondArrow.style.position = 'absolute'
+//             // secondArrow.style.zIndex = 3
+//             // secondArrow.style.top = 5 + 'px'
+//             // secondArrow.style.left = center - parseInt(sw)/2 + 'px'
+//             // secondArrow.style.borderTopRightRadius = 20 + 'px'// округление
+//             // secondArrow.style.borderTopLeftRadius = 20 + 'px'
+//             // secondArrow.style.transformOrigin = 'bottom'
+//             secondArrow.style.transform = `rotate(${sec*360/60}deg)`           
+//             wrapClock.appendChild(secondArrow)
+//             /////////////////////////////////////////////////////
+//             let hourArrow = document.createElement('div') // стрелка часов
+//             hourArrow.setAttribute('class','hour')
+//             // hourArrow.style.backgroundColor = 'white'
+//             // let hw=hourArrow.style.width = (5/100)*value + 'px'
+//             // hourArrow.style.height = center - 30 + 'px'
+//             // hourArrow.style.position = 'absolute'
+//             // hourArrow.style.zIndex = 1
+//             // hourArrow.style.top = 30 + 'px'
+//             // hourArrow.style.left = center - parseInt(hw)/2 + 'px'
+//             // hourArrow.style.borderTopRightRadius = 20 + 'px'// округление
+//             // hourArrow.style.borderTopLeftRadius = 20 + 'px'
+//             // hourArrow.style.transformOrigin = 'bottom'
+//             hourArrow.style.transform=`rotate(${hour*360/12 + min/2}deg)`
+//             wrapClock.appendChild(hourArrow)
+//             setInterval(second,1000)
+//             function second() {
+//                 let timee = new Date()
+//                 let secc = timee.getSeconds()
+//                 let minn = timee.getMinutes()
+//                 let hourr = timee.getHours()
+//                 secondArrow.style.transform = `rotate(${secc*360/60}deg)`
+//                 minuteArrow.style.transform=`rotate(${minn*360/60}deg)`
+//                 hourArrow.style.transform=`rotate(${hour*360/12 + min/2}deg)`
+//                 console.log(timee.toLocaleTimeString());
+//             }
+//         }
+//         ///////////////////////////////////////////////////////////////////
+//         {   // экран с временем
+//             let screen = document.createElement('div') 
+//             screen.setAttribute('class','screen')
+//             setInterval(testF,1000)
+//             // screen.style.fontSize = 25 + 'px'
+//             // screen.style.color = 'white'
+//             // screen.style.display = 'flex'
+//             // screen.style.justifyContent ='center'
+//             // screen.style.alignItems='center'
+            
+//             // let widthScreen = screen.style.width = (50/100)*value+'px'
+//             // let heightScreen = screen.style.height = (15/100)*value+'px'
+//             // screen.style.position = 'absolute'
+//             // screen.style.top = (25/100) * value + 'px'
+//             // screen.style.left = center-parseInt(widthScreen)/2 + 'px'
+//             // screen.style.backgroundColor = 'black' 
+//             screen.innerHTML = time.toLocaleTimeString()           
+//             // screen.style.zIndex = 1000
+//             // screen.style.borderRadius = '30%'
+//             wrapClock.appendChild(screen)
+
+//             function testF() {
+//                 let time = new Date()
+//                 // console.log(time.toLocaleTimeString());
+//                 screen.innerText = time.toLocaleTimeString()
+                
+//             }   
+//         }
+        
+// ////////////////////////////////////////////////////////////////////////////////
+        
+
+//         // создаем циферблат
+//         for (let i = 1; i <= 12; i++) {
+//             angle = (2*Math.PI / 12) * i 
+//             let left = center + rastouan * Math.sin(angle) //положение цифр-часов X
+//             let top = center - rastouan * Math.cos(angle) //положение цифр-часов Y
+//             let childWrapClock = document.createElement('div')
+//             childWrapClock.innerText = i
+//             childWrapClock.style.display = 'flex'
+//             childWrapClock.style.justifyContent = 'center'
+//             childWrapClock.style.alignItems = 'center'
+//             childWrapClock.style.width = absoluteWidth + 'px'
+//             childWrapClock.style.height = absoluteWidth + 'px'
+//             childWrapClock.style.borderRadius = '50%'
+//             childWrapClock.style.backgroundColor = '#48B382'
+//             childWrapClock.style.fontSize = 20 + 'px'
+//             childWrapClock.style.position = 'absolute'
+//             childWrapClock.style.left = Math.abs(left - absoluteWidth/2 ) + 'px'
+//             childWrapClock.style.top = Math.abs(top - absoluteWidth/2) + 'px'
+//             wrapClock.appendChild(childWrapClock)
+//         }
+//         body.appendChild(wrapClock)  
+        
+//         //время
+//     }
+// }
+// buildClock()
+
+// var2
+// 'use strict'
+// const body = document.body
+// const container = body.querySelector('.container')
+// const InputDiameter = document.getElementById('diameterClock')
+// const btn = document.getElementById('btn')
+// // let InputDiameter = 300
+
+// btn.addEventListener('click', buildClock)
+// function buildClock() {
+//     const value = Number(InputDiameter.value)//InputDiameter.value!!!
+//     if (value && (value >= 200 && value <= 800) ) {
+//         container.style.display = 'none' //блок с полем ввода и кнопкой
+//         let wrapClock = document.createElement('div') // создаем радиус часов(род блок)
+//         wrapClock.style.width = value+'px'
+//         wrapClock.style.height = value+'px'
+//         wrapClock.style.backgroundColor = '#FCCA66'
+//         wrapClock.style.borderRadius = '50%'
+//         wrapClock.style.position = 'relative'
+        
+//         const absoluteWidth = (15 / 100) * value // ширина и высота цифр-часов по отношению род блока (15%)
+//         const center =  value / 2 // центр круга по оси 'X' и 'Y'
+//         const distance = (80 / 100) * center // растояние цифр-часов по отношению центра род блока (80%)
+
+//         const time = new Date()
+//         const sec = time.getSeconds()*360/60 // градус стрелки секунды
+//         const min = time.getMinutes()*360/60 // градус стрелки минуты
+//         const hour = time.getHours()*360/12 + time.getMinutes()/2 // градус стрелки часов
+//          // создаем циферблат
+//          for (let i = 1; i <= 12; i++) {
+//             const angle = (2*Math.PI / 12) * i 
+//             const left = center + distance * Math.sin(angle) //положение цифр-часов X
+//             const top = center - distance * Math.cos(angle) //положение цифр-часов Y
+//             const childWrapClock = document.createElement('div')
+//             childWrapClock.style.display = 'flex'
+//             childWrapClock.style.justifyContent = 'center'
+//             childWrapClock.style.alignItems = 'center'
+//             childWrapClock.style.width = absoluteWidth + 'px'
+//             childWrapClock.style.height = absoluteWidth + 'px'
+//             childWrapClock.style.borderRadius = '50%'
+//             childWrapClock.style.backgroundColor = '#48B382'
+//             childWrapClock.style.fontSize = absoluteWidth/2 + 'px'//ширина шрифта заисящая от ширины своего родителя 
+//             childWrapClock.innerText = i
+//             childWrapClock.style.position = 'absolute'
+//             childWrapClock.style.left = Math.abs(left - absoluteWidth/2 ) + 'px'
+//             childWrapClock.style.top = Math.abs(top - absoluteWidth/2) + 'px'
+//             wrapClock.appendChild(childWrapClock)
+//         }
+//         //  табло с временем //
+//             const screen = document.createElement('div') 
+//             screen.setAttribute('class','screen')
+//             screen.innerHTML = time.toLocaleTimeString()
+//             screen.style.fontSize = value / 10  + 'px'
+//             wrapClock.appendChild(screen)
+
+//             const addArrow = (className,deg) => {
+//                 const arrow = document.createElement('div')
+//                 arrow.setAttribute('class', className)
+//                 arrow.style.transform = `rotate(${deg}deg)`
+//                 wrapClock.appendChild(arrow)
+//                 return arrow
+//             }
+//             const minuteArrow = addArrow('minute',min)
+//             const secondArrow = addArrow('second',sec)
+//             const hourArrow = addArrow('hour',hour)
+//          // стрелки минуты секунды и часы //
+//             // const minuteArrow = document.createElement('div') // стрелка минуты
+//             // minuteArrow.setAttribute('class','minute')
+//             // minuteArrow.style.transform=`rotate(${min}deg)`
+//             // wrapClock.appendChild(minuteArrow)
+//             /////////////////////////////////////////////////////
+//             // const secondArrow = document.createElement('div') // стрелка секунды
+//             // secondArrow.setAttribute('class','second')
+//             // secondArrow.style.transform = `rotate(${sec}deg)`           
+//             // wrapClock.appendChild(secondArrow)
+//             /////////////////////////////////////////////////////
+//             // const hourArrow = document.createElement('div') // стрелка часов
+//             // hourArrow.setAttribute('class','hour')
+//             // hourArrow.style.transform=`rotate(${hour}deg)`
+//             // wrapClock.appendChild(hourArrow)
+
+//             setInterval(second,1000)
+//             function second() {
+//                 const getTime= new Date()
+//                 const getSeconds = getTime.getSeconds()*360/60
+//                 const getMinutes = getTime.getMinutes()*360/60
+//                 const getHours = getTime.getHours()*360/12 + getTime.getMinutes()/2
+
+//                 secondArrow.style.transform = `rotate(${getSeconds}deg)`
+//                 minuteArrow.style.transform=`rotate(${getMinutes}deg)`
+//                 hourArrow.style.transform=`rotate(${getHours}deg)`
+//                 screen.innerText = getTime.toLocaleTimeString()
+//                 // console.log(getTime.toLocaleTimeString());
+//             }
+//             body.appendChild(wrapClock)
+//     }
+// }
+
+
+    </script>
+</body>
+</html>
