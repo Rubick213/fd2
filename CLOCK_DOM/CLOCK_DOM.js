@@ -47,21 +47,29 @@ function buildClock() {
         //  табло с временем //
             const screen = document.createElement('div') 
             screen.setAttribute('class','screen')
-            screen.innerHTML = time.toLocaleTimeString()
-            screen.style.fontSize = value / 10  + 'px'
+            screen.innerHTML = time.toLocaleTimeString() + ' ' + 'AM'
+            screen.style.fontSize = value / 15  + 'px'
             wrapClock.appendChild(screen)
 
-            const addArrow = (className,deg) => {
+            const heightSec = (50/100)*value //расчет высоты стрелки (50% от радиуса)
+            const heightMinute = (40/100)*value // (40% от радиуса)
+            const heightHour = (30/100)*value // (30% от радиуса)
+            const addArrow = (className,deg,height) => {
+                const possTop = (value/2) - height + (10/100)*height // расчет позиции абсолют: топ т.е. половина радиуса минус высота стрелки и + 10% от высоты стрелки
+                const transformOrigin =  height - (10/100)*height // смещение точки центра трансформ ориджинал 
                 const arrow = document.createElement('div')
                 arrow.setAttribute('class', className)
+                arrow.style.height = height +'px'
+                arrow.style.top = possTop + 'px'
+                arrow.style.transformOrigin =`50% ${transformOrigin}px`
                 arrow.style.transform = `rotate(${deg}deg)`
                 wrapClock.appendChild(arrow)
                 return arrow
             }
-            const minuteArrow = addArrow('minute',min)
-            const secondArrow = addArrow('second',sec)
-            const hourArrow = addArrow('hour',hour)
-
+            const minuteArrow = addArrow('minute',min,heightMinute)
+            const secondArrow = addArrow('second',sec,heightSec)
+            const hourArrow = addArrow('hour',hour,heightHour)
+            body.appendChild(wrapClock)
             setInterval(second,1000)
             function second() {
                 const getTime= new Date()
@@ -72,11 +80,9 @@ function buildClock() {
                 secondArrow.style.transform = `rotate(${getSeconds}deg)`
                 minuteArrow.style.transform=`rotate(${getMinutes}deg)`
                 hourArrow.style.transform=`rotate(${getHours}deg)`
-                screen.innerText = getTime.toLocaleTimeString()
+                screen.innerText = getTime.toLocaleTimeString() + 'AM'
                 console.log(getTime.toLocaleTimeString());
             }
-            body.appendChild(wrapClock)
+            
     }
 }
-
-
