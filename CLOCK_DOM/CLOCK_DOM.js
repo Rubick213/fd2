@@ -47,7 +47,7 @@ function buildClock() {
         //  табло с временем //
             const screen = document.createElement('div') 
             screen.setAttribute('class','screen')
-            screen.innerHTML = time.toLocaleTimeString() + ' ' + 'AM'
+            screen.innerHTML = time.toLocaleTimeString()
             screen.style.fontSize = value / 15  + 'px'
             wrapClock.appendChild(screen)
 
@@ -70,18 +70,21 @@ function buildClock() {
             const secondArrow = addArrow('second',sec,heightSec)
             const hourArrow = addArrow('hour',hour,heightHour)
             body.appendChild(wrapClock)
-            setInterval(second,1000)
+
+            second()
             function second() {
                 const getTime= new Date()
                 const getSeconds = getTime.getSeconds()*360/60
                 const getMinutes = getTime.getMinutes()*360/60
                 const getHours = getTime.getHours()*360/12 + getTime.getMinutes()/2
+                const getMS = getTime.getMilliseconds()
 
                 secondArrow.style.transform = `rotate(${getSeconds}deg)`
                 minuteArrow.style.transform=`rotate(${getMinutes}deg)`
                 hourArrow.style.transform=`rotate(${getHours}deg)`
-                screen.innerText = getTime.toLocaleTimeString() + 'AM'
+                screen.innerText = getTime.toLocaleTimeString()
                 console.log(getTime.toLocaleTimeString());
+                setTimeout(second,1010-getMS)
             }
             
     }
