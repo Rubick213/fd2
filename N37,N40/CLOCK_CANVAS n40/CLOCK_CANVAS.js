@@ -17,8 +17,10 @@ function addHour() {
         canvas.setAttribute('height',width)
         body.appendChild(canvas)
 
+        
+       
         x()
-        function x () {      
+        function x () {    
             graphics.clearRect(0, 0, width, width)
             
             const hoursFaceWidth = 20/100*width //размер цифр часов
@@ -56,6 +58,7 @@ function addHour() {
             
             
              const time = new Date()
+             console.log(time.toLocaleTimeString());
              const sec = time.getSeconds() * 360 / 60
              const min = time.getMinutes()*360/60
              const h = time.getHours()*360/12 + time.getMinutes()/2
@@ -87,7 +90,6 @@ function addHour() {
                 graphics.moveTo(width / 2, width / 2);              
                 graphics.lineTo(secX, secY);
                 graphics.stroke();
-                setTimeout(x,1010 - milSec) 
             }
             arrow(sec,secArrow.x_y,secArrow.strokeStyle,secArrow.lineWidth)
             arrow(min,minArrow.x_y,minArrow.strokeStyle,minArrow.lineWidth)
@@ -106,7 +108,9 @@ function addHour() {
             graphics.arc(width/2,width/2,4/100*width,0,Math.PI*2,false)
             graphics.fill()
             graphics.stroke()
+            setTimeout(x,1010 - milSec) 
         }
+        
     }
 }
 // addHour()
