@@ -2,11 +2,13 @@ const body = document.querySelector('body')
 const InputDiameter = document.getElementById('diameterClock')
 const container = body.querySelector('.container')
 const btn = document.getElementById('btn')
-
+const MQRes=Modernizr.mq('canvas');
+    console.log(MQRes);
 btn.addEventListener('click', addHour)
 // const width  = 500
 
 function addHour() {
+    
     const width = parseInt(InputDiameter.value)
     if (width && (width >= 200 && width <= 800) ) {
         

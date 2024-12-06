@@ -1,0 +1,10 @@
+div{
+    margin-bottom: 10px;
+}
+#tenis{
+    box-sizing: border-box;
+    outline: 5px solid green;
+    background-image: url(../img/tenis.jpeg);
+    background-size: 615px 300px;
+    background-position: -57.5px -49.2px;
+}
