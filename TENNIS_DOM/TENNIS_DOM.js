@@ -89,6 +89,7 @@ Rocket.prototype.startRocket = function() {
     ctx.fill()
 }
 Rocket.prototype.moveRocket = function() {
+    let i = B.posX
     this.posY += this.speed
     if (this.posY < 0) {
         this.speed = 0
@@ -102,7 +103,8 @@ Rocket.prototype.moveRocket = function() {
     ctx.fillStyle = this.fill
     ctx.rect(this.posX,this.posY,this.width,this.height)
     ctx.fill()
-    if (ctx.isPointInPath(this.posX, this.posY) === ctx.isPointInPath(B.posX,B.posY)) {
+    
+    if (ctx.isPointInPath(this.posX, this.posY) === ctx.isPointInPath(B.posX+15 ,B.posY) || ctx.isPointInPath(this.posX, this.posY) === ctx.isPointInPath(B.posX-15 ,B.posY)) {
         if (!check) {
             B.speedX = -B.speedX
             B.posX = B.posX > w/2?B.posX - B.radius : B.posX + B.radius
