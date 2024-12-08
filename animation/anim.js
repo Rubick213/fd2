@@ -106,13 +106,20 @@ let wc = canvas.offsetWidth
 let hc = canvas.offsetHeight
 
 ctx.beginPath()
-ctx.strokeFill = 'black'
+ctx.strokeStyle = 'blue'
+ctx.fillStyle = 'blue'
 ctx.lineWidth = 4
+ctx.lineJoin='round'
+ctx.shadowColor='blue';
+ctx.shadowOffsetX=0;
+ctx.shadowOffsetY=0;
+ctx.shadowBlur=15;
 ctx.moveTo(175,0)
 ctx.lineTo(150,50)
 ctx.lineTo(250,100)
 ctx.lineTo(200,200)
 ctx.lineTo(210,300)
+ctx.lineTo(200,400)
 ctx.stroke()
 ctx.beginPath()
 ctx.moveTo(250,100)
@@ -121,10 +128,16 @@ ctx.lineTo(300,160)
 ctx.lineTo(325,225)
 ctx.stroke()
 ctx.beginPath()
-ctx.moveTo(310,200)
-ctx.lineTo()
-ctx.lineTo()
-ctx.lineTo()
+// ctx.moveTo(310,200)
+// ctx.lineTo()
+// ctx.lineTo()
+// ctx.lineTo()
+// ctx.stroke()
+ctx.beginPath()
+ctx.moveTo(190,390)
+ctx.lineTo(180,350)
+ctx.lineTo(160,370)
+ctx.lineTo(150,330)
 ctx.stroke()
 
 
