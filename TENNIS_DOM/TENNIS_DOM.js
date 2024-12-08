@@ -104,7 +104,7 @@ Rocket.prototype.moveRocket = function() {
     ctx.rect(this.posX,this.posY,this.width,this.height)
     ctx.fill()
     
-    if (ctx.isPointInPath(this.posX, this.posY) === ctx.isPointInPath(B.posX+15 ,B.posY) || ctx.isPointInPath(this.posX, this.posY) === ctx.isPointInPath(B.posX-15 ,B.posY)) {
+    if (ctx.isPointInPath(this.posX, this.posY) === ctx.isPointInPath(B.posX+B.radius ,B.posY) || ctx.isPointInPath(this.posX, this.posY) === ctx.isPointInPath(B.posX-B.radius ,B.posY)) {
         if (!check) {
             B.speedX = -B.speedX
             B.posX = B.posX > w/2 ? B.posX - B.radius : B.posX + B.radius
