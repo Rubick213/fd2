@@ -1,26 +1,55 @@
-export class ObjStorageClass {
-    constructor() {
-        this.storage = {}
+
+export class ObjStorageClass{
+    constructor(product) {
+       this.product = product
+       this.storage = {}
+       this.getChange()
+    }
+
+    saveChange(){
+        localStorage[this.product] = JSON.stringify(this.storage)
+    }
+    getChange(){
+        if (localStorage[this.product]) {
+            try {
+                this.storage = JSON.parse(localStorage[this.product])
+            }
+            catch(er) {
+            }
+        }    
     }
 
     addValue(key,value) {
-        this.storage[key] = value
+    
+        this.storage[key] = value   
+        
+        this.saveChange()
     }
+
     getValue(key){
+        this.getChange()
         return this.storage[key]
     }
     deleteValue(key) {
-        if (key in this.storage) {
+        this.getChange()
+        if (this.storage.hasOwnProperty(key)) {
             delete this.storage[key]
+            this.saveChange()
             return true
         } 
         return false
     }
     getKeys() {
+        this.getChange()
+        console.log(this.storage);
         return  Object.keys(this.storage)
     }
 }
-let Alko = new ObjStorageClass()
+let Alko = new ObjStorageClass('drink')
+
+
+
+
 
 
 let test = document.querySelectorAll('.btn')
@@ -32,7 +61,7 @@ test.forEach(elBtn => {
         let outFunc
         switch (setId) {
             case '1':
-                key = testPrompt('Введите название напитка')
+                key = testPrompt('Введите название')
                 if (key) {
                     value = bool(['Страна происхождения','рецепт преготовления'])
                     if (value) {
@@ -41,14 +70,14 @@ test.forEach(elBtn => {
                 }
                 break;
             case '2':
-                key = testPrompt('Название для информации напитка')
+                key = testPrompt('информация')
                 if(key) {
                   outFunc = Alko.getValue(key)
                   out(outFunc,key)
                 }
                 break;
             case '3':
-                key = testPrompt('Какой напиток удалить ?')
+                key = testPrompt('что удалить?')
                 if (key) {
                     outFunc = Alko.deleteValue(key)
                     out(outFunc)
@@ -60,7 +89,7 @@ test.forEach(elBtn => {
                 out(outFunc)
                 break;
         }
-        console.log(`обработчик событий для кнопок =>`, Alko.storage);
+        // console.log(`обработчик событий для кнопок =>`, Alko.storage);
     })
 });
 
@@ -118,5 +147,5 @@ function out(value,name = null) {
             }
             break;
     }
-    console.log(`функция вывода => ${value} `);
+    // console.log(`функция вывода => ${value} `);
 }

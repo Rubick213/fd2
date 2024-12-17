@@ -13,6 +13,12 @@ const ctx = can.getContext('2d')
 btnStart.addEventListener('click',startGame)
 window.addEventListener('keydown', down)
 window.addEventListener('keyup',up)
+
+//////// audio
+const pong = new Audio('../audio/Palloncino.mp3')
+const hlop = new Audio("../audio/applaus.mp3")
+///////
+
 ///////мяч
 const Ball = function() {
     let self = this
@@ -27,10 +33,16 @@ const B = new Ball()
 // console.log(B);
 
 Ball.prototype.startBall = function() {
-    let randomY = Math.random() * 3
-    let randomNum  = Math.floor(randomY) - 1
-    this.speedY = randomNum
-    this.speedX = randomY > 1.5 ? 1 : -1
+    let angle = (Math.floor(Math.random()*(45-30+1))+30)/180*Math.PI // угол вылета мяча ()
+    const xMul = Math.random()<0.5?1:-1
+    const yMul = Math.random()<0.5?1:-1
+
+    // let randomY = Math.random() * 3
+    // let randomNum  = Math.floor(randomY) - 1
+
+
+    this.speedY = Math.sin(angle)*yMul
+    this.speedX = Math.cos(angle)*xMul
     this.posX = w/2
     this.posY = h/2
     ctx.clearRect(0,0,w,h)
@@ -49,12 +61,14 @@ Ball.prototype.moveBall = function() {
             rightCount++
             rightNum.textContent = rightCount
             check = true
+            hlopA()
         }
         if (this.posX - this.radius < 0) {
             this.posX = this.radius
             leftCount++
             leftNum.textContent=leftCount
             check = true
+            hlopA()
         }
         if (this.posY > h - this.radius || this.posY - this.radius < 0 ) {
             this.speedY = -this.speedY
@@ -108,6 +122,7 @@ Rocket.prototype.moveRocket = function() {
         if (!check) {
             B.speedX = -B.speedX
             B.posX = B.posX > w/2 ? B.posX - B.radius : B.posX + B.radius
+            pongA()
         }
         
 
@@ -119,6 +134,7 @@ Lrocket.startRocket()
 // console.log(Lrocket);
 ////функция начала игры
 function startGame(){
+    audioM()
     Rrocket.startRocket()
     Lrocket.startRocket()
     if (check) {
@@ -174,3 +190,37 @@ function up(event) {
     }
 }
 
+function audioM() {
+    pong.play()
+    pong.pause()
+    hlop.play()
+    hlop.pause()
+}
+function hlopA() {
+    hlop.currentTime = 0
+    hlop.play()
+}
+function pongA() {
+    pong.currentTime = 0
+    pong.play()
+}
+
+
+
+
+
+
+
+
+
+
+
+// функция диапазона
+// function randomDiap(n,m) {
+//     return Math.floor(Math.random()*(m-n+1))+n;
+// }
+if (navigator.vibrate) {
+    console.log(true);
+} else {
+    console.log(false);
+}

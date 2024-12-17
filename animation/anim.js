@@ -1,7 +1,56 @@
+// 2:10
+const qqq = {
+    namename:222,
+}
+
+
+const a = {
+    name:'sasha',
+    age:'28',
+    city: 'Gomel',
+    test2:[{name:'asd'},{name:'asd'}],
+    auto:{
+        a:1,
+        b:2
+    },
+    dat: new Date,
+}
+// a.test = qqq
+// qqq.start = a
+// console.log(a);
+a.dat.toJSON = function() {
+    return this.getTime()/1000/60/60/24
+}
+let h = JSON.stringify(a,['name','age','test2',],)
+console.log(h);
+
+function xxx(key,value){
+    if (key == 'dat') {
+        return new Date(value*1000*60*60*24)
+    }
+    return value
+} 
+let h2 = JSON.parse(h,xxx)
+console.log(h2);
+
+console.log('toJSON' in Date.prototype);
 // сердце увеличиваеться и уменьшаеться
 // {
-//     const canvas = document.getElementById('ctx')
-//     const ctx = canvas.getContext('2d')
+    const canvas = document.getElementById('ctx')
+    const ctx = canvas.getContext('2d')
+    let f = false
+    // ctx.beginPath()
+    // ctx.lineWidth = 10
+    // ctx.arc(50,50,15,45,Math.PI*2+45)
+    // // ctx.stroke()
+    // // ctx.beginPath()
+    
+    // ctx.arc(150,150,15,0,Math.PI*2)
+    // ctx.stroke()
+    // ctx.arc(250,50,15,0,Math.PI*2)
+    // ctx.stroke()
+
+   
 //     let wc = canvas.offsetWidth
 //     let hc = canvas.offsetHeight
 
@@ -95,50 +144,50 @@
 //             }
         
 //         }
-//         requestAnimationFrame(an)
+//         // requestAnimationFrame(an)
         
 //     }
 // }
 
-const canvas = document.getElementById('ctx')
-const ctx = canvas.getContext('2d')
-let wc = canvas.offsetWidth
-let hc = canvas.offsetHeight
+// const canvas = document.getElementById('ctx')
+// const ctx = canvas.getContext('2d')
+// let wc = canvas.offsetWidth
+// let hc = canvas.offsetHeight
 
-ctx.beginPath()
-ctx.strokeStyle = 'blue'
-ctx.fillStyle = 'blue'
-ctx.lineWidth = 4
-ctx.lineJoin='round'
-ctx.shadowColor='blue';
-ctx.shadowOffsetX=0;
-ctx.shadowOffsetY=0;
-ctx.shadowBlur=15;
-ctx.moveTo(175,0)
-ctx.lineTo(150,50)
-ctx.lineTo(250,100)
-ctx.lineTo(200,200)
-ctx.lineTo(210,300)
-ctx.lineTo(200,400)
-ctx.stroke()
-ctx.beginPath()
-ctx.moveTo(250,100)
-ctx.lineTo(255,150)
-ctx.lineTo(300,160)
-ctx.lineTo(325,225)
-ctx.stroke()
-ctx.beginPath()
-// ctx.moveTo(310,200)
-// ctx.lineTo()
-// ctx.lineTo()
-// ctx.lineTo()
+// ctx.beginPath()
+// ctx.strokeStyle = 'blue'
+// ctx.fillStyle = 'blue'
+// ctx.lineWidth = 4
+// ctx.lineJoin='round'
+// ctx.shadowColor='blue';
+// ctx.shadowOffsetX=0;
+// ctx.shadowOffsetY=0;
+// ctx.shadowBlur=15;
+// ctx.moveTo(175,0)
+// ctx.lineTo(150,50)
+// ctx.lineTo(250,100)
+// ctx.lineTo(200,200)
+// ctx.lineTo(210,300)
+// ctx.lineTo(200,400)
 // ctx.stroke()
-ctx.beginPath()
-ctx.moveTo(190,390)
-ctx.lineTo(180,350)
-ctx.lineTo(160,370)
-ctx.lineTo(150,330)
-ctx.stroke()
+// ctx.beginPath()
+// ctx.moveTo(250,100)
+// ctx.lineTo(255,150)
+// ctx.lineTo(300,160)
+// ctx.lineTo(325,225)
+// ctx.stroke()
+// ctx.beginPath()
+// // ctx.moveTo(310,200)
+// // ctx.lineTo()
+// // ctx.lineTo()
+// // ctx.lineTo()
+// // ctx.stroke()
+// ctx.beginPath()
+// ctx.moveTo(190,390)
+// ctx.lineTo(180,350)
+// ctx.lineTo(160,370)
+// ctx.lineTo(150,330)
+// ctx.stroke()
 
 
 
