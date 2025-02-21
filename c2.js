@@ -253,4 +253,3 @@ function testCopy(ArrTest,name) {
 
 
 console.log(2);
-let asd = 12
