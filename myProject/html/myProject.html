@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/myProject.css">
+    <title>Document</title>
+    <script src="../js/startAnimation.js"></script>
+</head>
+<body>
+    <svg style="display: none;">
+        <defs>
+            <symbol id="icon-star">
+                <g id="Layer_1">
+                    <title>Layer 1</title>
+                    <path id="svg_2" d="m21.27758,49.73592l7.627,-6.18383l20.89403,16.93234l34.82968,-28.22056l7.62969,6.17946l-42.45937,34.40877" stroke="#000" fill="none"/>
+                    <line id="svg_3" y2="73.19608" x2="50.58823" y1="50" x1="21.19608" stroke="#000" fill="none"/>
+                    <line id="svg_4" y2="70.62745" x2="129.21568" y1="70.62745" x1="128.82353" stroke="#000" fill="none"/>
+                   </g>
+            </symbol>
+        </defs>
+    </svg>
+    <canvas id="canvas_show"></canvas>
+    <div class="container">
+        <!-- <div class="title">
+            <canvas id="title_canvas"></canvas>
+        </div> -->
+        <div class="menu_list">
+            <button class="btn game_btn">играть</button>
+            <button class="btn">настройки</button>
+            <button class="btn">информация игры</button>
+            <button class="btn btn_put">вход</button>
+            <button class="btn btn_out">выход</button>
+        </div>
+    </div>
+
+    <div class="startGame special_container">
+        <div class="lvl_game">
+            <div class="lvl lvl_1" data-id="lvl1">
+                <p>уровень 1</p>
+                <svg class="icon" viewBox="5 0 100 100">
+                    <use xlink:href="#icon-star"></use>
+                </svg>
+            </div>
+            <div class="lvl lvl_2" data-id="lvl2">
+                <p>уровень 2</p>
+                <svg class="icon" viewBox="0 0 100 100">
+                    <use xlink:href="#icon-star"></use>
+                </svg>
+            </div>
+            <div class="lvl lvl_3" data-id="lvl3">
+                <p>уровень 3</p>
+                <svg class="icon" viewBox="0 0 100 100">
+                    <use xlink:href="#icon-star"></use>
+                </svg>
+            </div>
+            <div class="lvl lvl_4" data-id="lvl4">
+                <p>уровень 4</p>
+                <svg class="icon" viewBox="0 0 100 100">
+                    <use xlink:href="#icon-star"></use>
+                </svg>
+            </div>
+            <div class="lvl lvl_5" data-id="lvl5">
+                <p>уровень 5</p>
+                <svg class="icon" viewBox="0 0 100 100">
+                    <use xlink:href="#icon-star"></use>
+                </svg>
+            </div>
+            <div class="lvl lvl_6" data-id="lvl6">
+                <p>уровень 6</p>
+                <svg class="icon" viewBox="0 0 100 100">
+                    <use xlink:href="#icon-star"></use>
+                </svg>
+            </div>
+            <div class="lvl lvl_7" data-id="lvl7">
+                <p>уровень 7</p>
+                <svg class="icon" viewBox="0 0 100 100">
+                    <use xlink:href="#icon-star"></use>
+                </svg>
+            </div>
+            <div class="lvl lvl_8" data-id="lvl8">
+                <p>уровень 8</p>
+                <svg class="icon" viewBox="0 0 100 100">
+                    <use xlink:href="#icon-star"></use>
+                </svg>
+            </div>
+            <div class="lvl lvl_9" data-id="lvl9">
+                <p>уровень 9</p>
+                <svg class="icon" viewBox="0 0 100 100">
+                    <use xlink:href="#icon-star"></use>
+                </svg>
+            </div>
+            <div class="lvl lvl_10" data-id="lvl10">
+                <p>уровень 10</p>
+                <svg class="icon" viewBox="0 0 100 100">
+                    <use xlink:href="#icon-star"></use>
+                </svg>
+            </div>
+            <div class="lvl lvl_11" data-id="lvl11">
+                <p>уровень 11</p>
+                <svg class="icon" viewBox="0 0 100 100">
+                    <use xlink:href="#icon-star"></use>
+                </svg>
+            </div>
+            <div class="lvl lvl_12" data-id="lvl12">
+                <p>уровень 12</p>
+                <svg class="icon" viewBox="0 0 100 100">
+                    <use xlink:href="#icon-star"></use>
+                </svg>
+            </div>
+            <div class="lvl lvl_13" data-id="lvl13">
+                <p>уровень 13</p>
+                <svg class="icon" viewBox="0 0 100 100">
+                    <use xlink:href="#icon-star"></use>
+                </svg>
+            </div>
+            <div class="lvl lvl_14" data-id="lvl14">
+                <p>уровень 14</p>
+                <svg class="icon" viewBox="0 0 100 100">
+                    <use xlink:href="#icon-star"></use>
+                </svg>
+            </div>
+            <div class="lvl lvl_15" data-id="lvl15">
+                <p>уровень 15</p>
+                <svg class="icon" viewBox="0 0 100 100">
+                    <use xlink:href="#icon-star"></use>
+                </svg>
+            </div>
+            <div class="lvl lvl_16" data-id="lvl16">
+                <p>уровень 16</p>
+                <svg class="icon" viewBox="0 0 100 100">
+                    <use xlink:href="#icon-star"></use>
+                </svg>
+            </div>
+        </div>
+    </div>
+    
+    <!-- <div class="setting special_container startGame">
+        <p>1111
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia repellat tempore quidem laudantium quo. Voluptas, voluptatum dolore pariatur sapiente facere eveniet iusto! Fugiat itaque laborum excepturi soluta error quibusdam aliquid.
+            Sequi nihil optio sapiente quisquam quaerat ducimus aliquid quae aliquam animi aut, rem beatae quibusdam non doloremque assumenda vel ullam qui? Maxime quae aliquid eos voluptatum, quidem provident culpa possimus!
+            Sint harum hic, dignissimos qui exercitationem ea. Architecto tempora tempore maiores reiciendis maxime? Eaque fuga unde provident, hic id quis dolor. Eaque labore expedita distinctio explicabo facere tempora dolores odit.
+        </p>    
+    </div>
+
+    <div class="infoGame special_container startGame">
+        <p>2222
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia repellat tempore quidem laudantium quo. Voluptas, voluptatum dolore pariatur sapiente facere eveniet iusto! Fugiat itaque laborum excepturi soluta error quibusdam aliquid.
+            Sequi nihil optio sapiente quisquam quaerat ducimus aliquid quae aliquam animi aut, rem beatae quibusdam non doloremque assumenda vel ullam qui? Maxime quae aliquid eos voluptatum, quidem provident culpa possimus!
+            Sint harum hic, dignissimos qui exercitationem ea. Architecto tempora tempore maiores reiciendis maxime? Eaque fuga unde provident, hic id quis dolor. Eaque labore expedita distinctio explicabo facere tempora dolores odit.
+        </p> 
+    </div>
+
+    <div class="registr special_container startGame">
+        <p>3333
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia repellat tempore quidem laudantium quo. Voluptas, voluptatum dolore pariatur sapiente facere eveniet iusto! Fugiat itaque laborum excepturi soluta error quibusdam aliquid.
+            Sequi nihil optio sapiente quisquam quaerat ducimus aliquid quae aliquam animi aut, rem beatae quibusdam non doloremque assumenda vel ullam qui? Maxime quae aliquid eos voluptatum, quidem provident culpa possimus!
+            Sint harum hic, dignissimos qui exercitationem ea. Architecto tempora tempore maiores reiciendis maxime? Eaque fuga unde provident, hic id quis dolor. Eaque labore expedita distinctio explicabo facere tempora dolores odit.
+        </p> 
+    </div>
+     -->
+     <button class="btn_close">menu</button>
+    <script src="../js/myProject.js"></script>
+</body>
+</html>
